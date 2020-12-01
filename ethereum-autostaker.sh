@@ -13,9 +13,11 @@ echo "-> Install Ethereum staking packages automatically https://turbolab.it/306
 
 
 ## Features
-SELF_UPDATE=1
-INSTALL_ZZUPDATE=1
-INSTALL_GETH=1
+SELF_UPDATE=0
+INSTALL_ZZUPDATE=0
+INSTALL_GETH=0
+INSTALL_ETH2_DEPOSIT_CLI=1
+INSTALL_NIMBUS=0
 
 
 ## Script name
@@ -168,4 +170,75 @@ if [ $INSTALL_GETH = 1 ]; then
 	systemctl restart geth
 fi
 
-#--
+
+## eth2.0-deposit-cli
+if [ $INSTALL_ETH2_DEPOSIT_CLI = 1 ]; then
+
+	printTitle "Installing eth2.0-deposit-cli...."
+	apt install git python3 python3-pip -y
+	
+	cd $HOME
+	git clone https://github.com/ethereum/eth2.0-deposit-cli.git
+	cd eth2.0-deposit-cli
+	
+	./deposit.sh install
+	
+	if [ $RUNMODE = "testnet" ]; then
+
+		./deposit.sh new-mnemonic --num_validators 1 --chain pyrmont
+	fi
+
+
+	if [ $RUNMODE = "mainnet" ]; then
+
+		./deposit.sh new-mnemonic --num_validators 1 --chain mainnet
+	fi
+fi
+
+
+## Nimbus
+if [ $INSTALL_NIMBUS = 1 ]; then
+
+	printTitle "Installing Nimbus...."
+	apt install build-essential git libpcre3-dev -y
+	
+	cd $HOME
+	git clone https://github.com/status-im/nimbus-eth2.git
+	
+	cd nimbus-eth2
+	
+	make beacon_node
+	mv /$HOME/nimbus-eth2/build/beacon_node /usr/local/bin/nimbus
+	
+	cd $HOME
+	rm -rf $HOME/nimbus-eth2
+	
+	
+	useradd --no-create-home --shell /bin/false nimbus
+	mkdir -p /var/lib/nimbus
+	chown -R nimbus:nimbus /var/lib/nimbus
+	chmod u=rwx,g=rx,o= /var/lib/nimbus -R
+	
+	nimbus deposits import --data-dir=/var/lib/nimbus $HOME/eth2.0-deposit-cli/validator_keys
+	
+	chown nimbus:nimbus /var/lib/nimbus -R
+
+	
+	if [ $RUNMODE = "testnet" ]; then
+
+		curl -Lo /etc/systemd/system/nimbus.service https://turbolab.it/scarica/347
+	fi
+
+
+	if [ $RUNMODE = "mainnet" ]; then
+
+		curl -Lo /etc/systemd/system/nimbus.service https://turbolab.it/scarica/349
+	fi
+
+
+	cat cat /etc/systemd/system/nimbus.service
+	sleep 5
+	
+	systemctl enable nimbus
+	systemctl restart nimbus
+fi

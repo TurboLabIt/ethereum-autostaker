@@ -127,6 +127,7 @@ esac
 if [ -z "$RUNMODE" ]; then
 
     echo "Bye bye"
+    exit
 fi
 
 

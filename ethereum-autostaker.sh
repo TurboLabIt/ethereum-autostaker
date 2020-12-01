@@ -10,7 +10,12 @@ cat << "EOF"
 EOF
 echo
 echo "-> Install Ethereum staking packages automatically https://turbolab.it/3066"
-sleep 5
+
+
+## Features
+SELF_UPDATE=1
+INSTALL_ZZUPDATE=1
+INSTALL_GETH=1
 
 
 ## Script name
@@ -36,46 +41,52 @@ function printTitle
 ## root check
 if ! [ $(id -u) = 0 ]; then
 
-		echo ""
-		echo "vvvvvvvvvvvvvvvvvvvv"
-		echo "Catastrophic error!!"
-		echo "^^^^^^^^^^^^^^^^^^^^"
-		echo "$SCRIPT_NAME must run as root!"
+    echo ""
+    echo "vvvvvvvvvvvvvvvvvvvv"
+    echo "Catastrophic error!!"
+    echo "^^^^^^^^^^^^^^^^^^^^"
+    echo "$SCRIPT_NAME must run as root!"
 
-		printTitle "How to fix it?"
-		echo "Execute the script like this:"
-		echo "sudo $SCRIPT_NAME"
+    printTitle "How to fix it?"
+    echo "Execute the script like this:"
+    echo "sudo $SCRIPT_NAME"
 
-		printTitle "The End"
-		echo $(date)
-		exit
+    printTitle "The End"
+    echo $(date)
+    exit
 fi
 
 
 ##
 SCRIPT_HASH=`md5sum ${SCRIPT_FULLPATH} | awk '{ print $1 }'`
-printTitle "Self-update...."
-source "${SCRIPT_DIR}setup.sh"
+if [ $SELF_UPDATE = 1 ]; then
+
+	printTitle "Self-updating...."
+	source "${SCRIPT_DIR}setup.sh"
+fi
+
 
 SCRIPT_HASH_AFTER_UPDATE=`md5sum ${SCRIPT_FULLPATH} | awk '{ print $1 }'`
 if [ "$SCRIPT_HASH" != "$SCRIPT_HASH_AFTER_UPDATE" ]; then
 
-		echo ""
-		echo "vvvvvvvvvvvvvvvvvvvvvv"
-		echo "Self-update installed!"
-		echo "^^^^^^^^^^^^^^^^^^^^^^"
-		echo "$SCRIPT_NAME has been updated!"
-		echo "Please run $SCRIPT_NAME again."
+    echo ""
+    echo "vvvvvvvvvvvvvvvvvvvvvv"
+    echo "Self-update installed!"
+    echo "^^^^^^^^^^^^^^^^^^^^^^"
+    echo "$SCRIPT_NAME has been updated!"
+    echo "Please run $SCRIPT_NAME again."
 
-		printTitle "The End"
-		echo $(date)
-		exit
+    printTitle "The End"
+    echo $(date)
+    exit
 fi
 
 
-printTitle "Installing prerequisites"
-apt update
-apt install git curl dialog -y
+if [ -z "$(command -v git)" ] || [ -z "$(command -v curl)" ] || [ -z "$(command -v dialog)" ]; then
+
+	printTitle "Installing prerequisites..."
+	apt update && apt install git curl dialog -y
+fi
 
 
 HEIGHT=17
@@ -84,31 +95,74 @@ CHOICE_HEIGHT=25
 BACKTITLE="$SCRIPT_NAME - TurboLab.it"
 TITLE="Staking box management GUI"
 MENU="Choose one of the options:"
-exit
+
 OPTIONS=(1 "🤓 Testnet setup/update"
-	 2 "💰 Mainnet setup/update")
+     2 "💰 Mainnet setup/update")
+
 
 CHOICE=$(dialog --clear \
-		--backtitle "$BACKTITLE" \
-		--title "$TITLE" \
-		--menu "$MENU" \
-		$HEIGHT $WIDTH $CHOICE_HEIGHT \
-		"${OPTIONS[@]}" \
-		2>&1 >/dev/tty)
+				--backtitle "$BACKTITLE" \
+				--title "$TITLE" \
+				--menu "$MENU" \
+				$HEIGHT $WIDTH $CHOICE_HEIGHT \
+				"${OPTIONS[@]}" \
+				2>&1 >/dev/tty)
 
 clear
 case $CHOICE in
-        1)
-            RUNMODE=testnet
-            ;;
-        2)
-            RUNMODE=mainnet
-            ;;
+    1)
+        RUNMODE=testnet
+        ;;
+    2)
+        RUNMODE=mainnet
+        echo "We are not ready for primetime just yet"
+        ;;
 esac
 
 
 if [ -z "$RUNMODE" ]; then
 
-	echo "Bye bye"
+    echo "Bye bye"
 fi
 
+
+## zzupdate
+if [ $INSTALL_ZZUPDATE = 1 ]; then
+
+	printTitle "Installing zzupdate..."
+	curl -s https://raw.githubusercontent.com/TurboLabIt/zzupdate/master/setup.sh?$(date +%s) | sudo sh
+	echo "REBOOT=0" > /etc/turbolab.it/zzupdate.conf
+	echo "VERSION_UPGRADE=0" >> /etc/turbolab.it/zzupdate.conf
+	zzupdate
+fi
+
+
+## Go Ethereum
+if [ $INSTALL_GETH = 1 ]; then
+
+	printTitle "Installing Go Ethereum...."
+	add-apt-repository -y ppa:ethereum/ethereum
+	apt update && apt install geth -y
+	
+	useradd --no-create-home --shell /bin/false goeth
+	mkdir -p /var/lib/goethereum
+	chown -R goeth:goeth /var/lib/goethereum
+	
+	if [ $RUNMODE = "testnet" ]; then
+
+		curl -Lo /etc/systemd/system/geth.service https://turbolab.it/scarica/344
+	fi
+
+
+	if [ $RUNMODE = "mainnet" ]; then
+
+		curl -Lo /etc/systemd/system/geth.service https://turbolab.it/scarica/348
+	fi
+
+
+	cat /etc/systemd/system/geth.service
+	sleep 5
+	
+	systemctl enable geth
+	systemctl restart geth
+fi

@@ -10,7 +10,7 @@ cat << "EOF"
 EOF
 echo
 echo "-> Install Ethereum staking packages automatically https://turbolab.it/3066"
-sleep 5
+#sleep 5
 
 
 ## Script name
@@ -36,19 +36,19 @@ function printTitle
 ## root check
 if ! [ $(id -u) = 0 ]; then
 
-		echo ""
-		echo "vvvvvvvvvvvvvvvvvvvv"
-		echo "Catastrophic error!!"
-		echo "^^^^^^^^^^^^^^^^^^^^"
-		echo "$SCRIPT_NAME must run as root!"
+    echo ""
+    echo "vvvvvvvvvvvvvvvvvvvv"
+    echo "Catastrophic error!!"
+    echo "^^^^^^^^^^^^^^^^^^^^"
+    echo "$SCRIPT_NAME must run as root!"
 
-		printTitle "How to fix it?"
-		echo "Execute the script like this:"
-		echo "sudo $SCRIPT_NAME"
+    printTitle "How to fix it?"
+    echo "Execute the script like this:"
+    echo "sudo $SCRIPT_NAME"
 
-		printTitle "The End"
-		echo $(date)
-		exit
+    printTitle "The End"
+    echo $(date)
+    exit
 fi
 
 
@@ -60,16 +60,16 @@ source "${SCRIPT_DIR}setup.sh"
 SCRIPT_HASH_AFTER_UPDATE=`md5sum ${SCRIPT_FULLPATH} | awk '{ print $1 }'`
 if [ "$SCRIPT_HASH" != "$SCRIPT_HASH_AFTER_UPDATE" ]; then
 
-		echo ""
-		echo "vvvvvvvvvvvvvvvvvvvvvv"
-		echo "Self-update installed!"
-		echo "^^^^^^^^^^^^^^^^^^^^^^"
-		echo "$SCRIPT_NAME has been updated!"
-		echo "Please run $SCRIPT_NAME again."
+    echo ""
+    echo "vvvvvvvvvvvvvvvvvvvvvv"
+    echo "Self-update installed!"
+    echo "^^^^^^^^^^^^^^^^^^^^^^"
+    echo "$SCRIPT_NAME has been updated!"
+    echo "Please run $SCRIPT_NAME again."
 
-		printTitle "The End"
-		echo $(date)
-		exit
+    printTitle "The End"
+    echo $(date)
+    exit
 fi
 
 
@@ -84,31 +84,33 @@ CHOICE_HEIGHT=25
 BACKTITLE="$SCRIPT_NAME - TurboLab.it"
 TITLE="Staking box management GUI"
 MENU="Choose one of the options:"
-exit
+
 OPTIONS=(1 "🤓 Testnet setup/update"
-	 2 "💰 Mainnet setup/update")
+     2 "💰 Mainnet setup/update")
+
 
 CHOICE=$(dialog --clear \
-		--backtitle "$BACKTITLE" \
-		--title "$TITLE" \
-		--menu "$MENU" \
-		$HEIGHT $WIDTH $CHOICE_HEIGHT \
-		"${OPTIONS[@]}" \
-		2>&1 >/dev/tty)
+				--backtitle "$BACKTITLE" \
+				--title "$TITLE" \
+				--menu "$MENU" \
+				$HEIGHT $WIDTH $CHOICE_HEIGHT \
+				"${OPTIONS[@]}" \
+				2>&1 >/dev/tty)
 
 clear
 case $CHOICE in
-        1)
-            RUNMODE=testnet
-            ;;
-        2)
-            RUNMODE=mainnet
-            ;;
+    1)
+        RUNMODE=testnet
+		echo "We are not ready for primetime just yet"
+        ;;
+    2)
+        RUNMODE=mainnet
+        echo "We are not ready for primetime just yet"
+        ;;
 esac
 
 
 if [ -z "$RUNMODE" ]; then
 
-	echo "Bye bye"
+    echo "Bye bye"
 fi
-

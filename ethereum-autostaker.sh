@@ -116,6 +116,7 @@ case $CHOICE in
     2)
         RUNMODE=mainnet
         echo "We are not ready for primetime just yet"
+		exit
         ;;
 esac
 
@@ -166,3 +167,5 @@ if [ $INSTALL_GETH = 1 ]; then
 	systemctl enable geth
 	systemctl restart geth
 fi
+
+#--

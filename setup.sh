@@ -2,15 +2,12 @@
 echo ""
 
 ## Script name
-SCRIPT_NAME=ethereum-autostaker
+SCRIPT_NAME="ethereum-autostaker"
 
 ## Install directory
 WORKING_DIR_ORIGINAL="$(pwd)"
 INSTALL_DIR_PARENT="/usr/local/turbolab.it/"
 INSTALL_DIR=${INSTALL_DIR_PARENT}${SCRIPT_NAME}/
-
-## /etc/ config directory
-mkdir -p "/etc/turbolab.it/"
 
 ## Pre-requisites
 apt update
@@ -45,4 +42,3 @@ echo ""
 echo "Setup completed!"
 echo "----------------"
 echo "See https://github.com/TurboLabIt/${SCRIPT_NAME} for the quickstart guide."
-

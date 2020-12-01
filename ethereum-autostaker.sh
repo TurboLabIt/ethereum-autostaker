@@ -84,7 +84,7 @@ CHOICE_HEIGHT=25
 BACKTITLE="$SCRIPT_NAME - TurboLab.it"
 TITLE="Staking box management GUI"
 MENU="Choose one of the options:"
-
+exit
 OPTIONS=(1 "🤓 Testnet setup/update"
 	 2 "💰 Mainnet setup/update")
 

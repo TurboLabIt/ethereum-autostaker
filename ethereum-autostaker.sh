@@ -13,11 +13,12 @@ echo "-> Install Ethereum staking packages automatically https://turbolab.it/306
 
 
 ## Features
-SELF_UPDATE=0
-INSTALL_ZZUPDATE=0
-INSTALL_GETH=0
+SELF_UPDATE=1
+INSTALL_ZZUPDATE=1
+INSTALL_GETH=1
 INSTALL_ETH2_DEPOSIT_CLI=1
-INSTALL_NIMBUS=0
+INSTALL_NIMBUS=1
+ENABLE_FIREWALL=1
 
 
 ## Script name
@@ -236,9 +237,69 @@ if [ $INSTALL_NIMBUS = 1 ]; then
 	fi
 
 
-	cat cat /etc/systemd/system/nimbus.service
+	cat /etc/systemd/system/nimbus.service
 	sleep 5
 	
 	systemctl enable nimbus
 	systemctl restart nimbus
 fi
+
+
+## Firewall
+if [ $ENABLE_FIREWALL = 1 ]; then
+
+	printTitle "Enabling the firewall...."
+	ufw allow 22/tcp && ufw allow 30303,9000/tcp && ufw allow 30303,9000/udp && ufw --force enable 
+	ufw status
+fi
+
+
+## Request validator activation
+printTitle "Activate your validator"
+echo -n "Now you must upload your validator deposit_data to "
+
+if [ $RUNMODE = "testnet" ]; then
+
+	echo "https://pyrmont.launchpad.ethereum.org"
+fi
+
+
+if [ $RUNMODE = "mainnet" ]; then
+
+	echo "https://launchpad.ethereum.org"
+fi
+
+echo "The file is here: $HOME/eth2.0-deposit-cli/validator_keys"
+
+echo "You must then follow the procedure and deposit 32 ETH."
+
+read -n 1 -s -r -p "Press any key when this is done"
+
+
+## Check the activation status
+echo ""
+printTitle "Check the activation"
+
+echo "You're almost there!"
+echo -n "Open this site: "
+
+if [ $RUNMODE = "testnet" ]; then
+
+	echo "https://pyrmont.beaconcha.in"
+fi
+
+
+if [ $RUNMODE = "mainnet" ]; then
+
+	echo "https://pyrmont.beaconcha.in"
+fi
+
+echo "Search the address of the wallet your deposited the ETH from "
+echo "to check the activation status of your validator."
+
+
+printTitle "The End"
+echo "Happy staking!"
+
+echo ""
+echo "Made with ♥ by https://TurboLab.it"

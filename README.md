@@ -7,5 +7,5 @@ Setup your Ethereum staking box almost automatically
 Just execute:
 
 ```
-sudo apt install curl -y && curl -s https://raw.githubusercontent.com/TurboLabIt/ethereum-autostaker/master/setup.sh?$(date +%s) | sudo bash
+sudo apt install curl -y && curl -s https://raw.githubusercontent.com/TurboLabIt/ethereum-autostaker/main/setup.sh?$(date +%s) | sudo bash
 ```

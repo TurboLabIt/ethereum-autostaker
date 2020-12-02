@@ -292,7 +292,7 @@ fi
 
 if [ $RUNMODE = "mainnet" ]; then
 
-	echo "https://pyrmont.beaconcha.in"
+	echo "https://beaconcha.in"
 fi
 
 echo "Search the address of the wallet your deposited the ETH from "

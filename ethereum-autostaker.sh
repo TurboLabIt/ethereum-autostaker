@@ -221,7 +221,7 @@ if [ $INSTALL_NIMBUS = 1 ]; then
 	chown -R nimbus:nimbus /var/lib/nimbus
 	chmod u=rwx,g=rx,o= /var/lib/nimbus -R
 	
-	nimbus deposits import --data-dir=/var/lib/nimbus $HOME/eth2.0-deposit-cli/validator_keys
+	/usr/local/bin/nimbus deposits import --data-dir=/var/lib/nimbus $HOME/eth2.0-deposit-cli/validator_keys
 	
 	chown nimbus:nimbus /var/lib/nimbus -R
 

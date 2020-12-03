@@ -1,0 +1,17 @@
+[Unit]
+Description=Nimbus (testnet)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=nimbus
+Group=nimbus
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=/var/lib/nimbus
+Environment="ClientIP=$(curl -s v4.ident.me)"
+ExecStart=/bin/bash -c '/usr/local/bin/nimbus --network=pyrmont --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --nat=extip:${ClientIP} --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-level=INFO --log-file=/var/lib/nimbus/beacon_node.log'
+
+[Install]
+WantedBy=multi-user.target

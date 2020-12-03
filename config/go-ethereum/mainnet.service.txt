@@ -1,0 +1,15 @@
+[Unit]
+Description=Go Ethereum (mainnet)
+After=network.target 
+Wants=network.target
+
+[Service]
+User=goeth 
+Group=goeth
+Type=simple
+Restart=on-failure
+RestartSec=5
+ExecStart=geth --ws --datadir /var/lib/goethereum
+
+[Install]
+WantedBy=default.target

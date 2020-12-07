@@ -177,7 +177,7 @@ fi
 if [ $INSTALL_ETH2_DEPOSIT_CLI = 1 ]; then
 
 	printTitle "Installing eth2.0-deposit-cli...."
-	apt install git python3 python3-pip -y
+	apt install git python3 python3-pip python3-testresources -y
 	
 	cd $HOME
 	git clone https://github.com/ethereum/eth2.0-deposit-cli.git
@@ -221,7 +221,7 @@ if [ $INSTALL_NIMBUS = 1 ]; then
 	chown -R nimbus:nimbus /var/lib/nimbus
 	chmod u=rwx,g=rx,o= /var/lib/nimbus -R
 	
-	/usr/local/bin/nimbus deposits import --data-dir=/var/lib/nimbus $HOME/eth2.0-deposit-cli/validator_keys
+	nimbus deposits import --data-dir=/var/lib/nimbus $HOME/eth2.0-deposit-cli/validator_keys
 	
 	chown nimbus:nimbus /var/lib/nimbus -R
 

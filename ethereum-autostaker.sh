@@ -208,9 +208,8 @@ if [ $INSTALL_NIMBUS = 1 ]; then
 	
 	cd nimbus-eth2
 	
-	#make beacon_node
-	#mv /$HOME/nimbus-eth2/build/beacon_node /usr/local/bin/nimbus
-	read -n 1 -s -r -p "UPLOAD BIN"
+	make beacon_node
+	mv /$HOME/nimbus-eth2/build/beacon_node /usr/local/bin/nimbus
 	
 	cd $HOME
 	rm -rf $HOME/nimbus-eth2

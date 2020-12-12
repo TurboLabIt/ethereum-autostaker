@@ -269,10 +269,7 @@ if [ $RUNMODE = "mainnet" ]; then
 fi
 
 echo "The file is here: $HOME/eth2.0-deposit-cli/validator_keys"
-
 echo "You must then follow the procedure and deposit 32 ETH."
-
-read -n 1 -s -r -p "Press any key when this is done"
 
 
 ## Check the activation status

@@ -138,7 +138,7 @@ if [ $INSTALL_ZZUPDATE = 1 ]; then
 	curl -s https://raw.githubusercontent.com/TurboLabIt/zzupdate/master/setup.sh?$(date +%s) | sudo sh
 	echo "REBOOT=0" > /etc/turbolab.it/zzupdate.conf
 	echo "VERSION_UPGRADE=0" >> /etc/turbolab.it/zzupdate.conf
-	zzupdate
+	#zzupdate
 fi
 
 
@@ -166,7 +166,6 @@ if [ $INSTALL_GETH = 1 ]; then
 
 
 	cat /etc/systemd/system/geth.service
-	sleep 5
 	
 	systemctl enable geth
 	systemctl restart geth
@@ -209,8 +208,9 @@ if [ $INSTALL_NIMBUS = 1 ]; then
 	
 	cd nimbus-eth2
 	
-	make beacon_node
-	mv /$HOME/nimbus-eth2/build/beacon_node /usr/local/bin/nimbus
+	#make beacon_node
+	#mv /$HOME/nimbus-eth2/build/beacon_node /usr/local/bin/nimbus
+	read -n 1 -s -r -p "UPLOAD BIN"
 	
 	cd $HOME
 	rm -rf $HOME/nimbus-eth2
@@ -239,7 +239,6 @@ if [ $INSTALL_NIMBUS = 1 ]; then
 
 
 	cat /etc/systemd/system/nimbus.service
-	sleep 5
 	
 	systemctl enable nimbus
 	systemctl restart nimbus

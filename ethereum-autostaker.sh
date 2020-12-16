@@ -138,6 +138,7 @@ if [ $INSTALL_ZZUPDATE = 1 ]; then
     curl -s https://raw.githubusercontent.com/TurboLabIt/zzupdate/master/setup.sh?$(date +%s) | sudo sh
     echo "REBOOT=0" > /etc/turbolab.it/zzupdate.conf
     echo "VERSION_UPGRADE=0" >> /etc/turbolab.it/zzupdate.conf
+    echo "NIMBUS_UPGRADE=1" >> /etc/turbolab.it/zzupdate.conf
     zzupdate
 fi
 

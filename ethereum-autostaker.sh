@@ -19,6 +19,7 @@ INSTALL_GETH=1
 INSTALL_ETH2_DEPOSIT_CLI=1
 INSTALL_NIMBUS=1
 ENABLE_FIREWALL=1
+INSTALL_IP_WATCH=1
 
 
 ## Script name
@@ -242,6 +243,14 @@ if [ $INSTALL_NIMBUS = 1 ]; then
     
     systemctl enable nimbus
     systemctl restart nimbus
+fi
+
+
+## IP WATCH
+if [ $INSTALL_IP_WATCH = 1 ]; then
+
+    printTitle "Installing IP Watch...."
+    bash ${SCRIPT_DIR}script/ip_watch.sh
 fi
 
 

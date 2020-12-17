@@ -36,6 +36,20 @@ fi
 
 
 echo ""
+echo "Cron file"
+echo "---------"
+if [ ! -f "$CRON_FILE" ]; then
+
+    echo "Creating cron file..."
+    cp "${INSTALL_DIR}config/cron/ethereum-autostaker" "$CRON_FILE"
+
+else
+
+    echo "Cron file exists"
+fi
+
+
+echo ""
 echo "Last know IP address"
 echo "--------------------"
 if [ ! -f "${IP_FILE}" ]; then

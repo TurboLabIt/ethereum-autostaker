@@ -13,6 +13,7 @@ INSTALL_DIR=${INSTALL_DIR_PARENT}ethereum-autostaker/
 LIB_DIR="/var/lib/turbolab.it/"
 IP_FILE=${LIB_DIR}ip_address
 
+CRON_FILE=/etc/cron.d/ethereum-autostaker
 
 ## Title
 WEBSTACKUP_FRAME="O===========================================================O"

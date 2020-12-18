@@ -5,4 +5,4 @@ ETH_CRON_SCRIPT_DIR=/usr/local/turbolab.it/ethereum-autostaker/script/
 ETH_CRON_LOG_DIR=/var/log/ethereum-autostaker_cron_
 
 ## Every X minutes - Detect IP address change
-*/7 * * * * root ${ETH_CRON_SCRIPT_DIR}ip_watch.sh >${ETH_CRON_LOG_DIR}ip_watch.sh.log 2>&1
+*/7 * * * * root ${ETH_CRON_SCRIPT_DIR}ip_watch.sh >>${ETH_CRON_LOG_DIR}ip_watch.sh.log 2>&1

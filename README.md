@@ -3,6 +3,8 @@
 # ethereum-autostaker
 Setup your Ethereum staking box almost automatically.
 
+Please note: this requires a PC with Ubuntu 20.04 Desktop or Server. It works best on a clean installation.
+
 *Parli italiano?* » Leggi: [ethereum-autostaker: script automatico per configurare un PC per lo staking di Ethereum 2.0 (guida)](https://turbolab.it/criptovalute-bitcoin-ethereum-litecoin-4904/ethereum-autostaker-script-automatico-configurare-pc-staking-ethereum-2.0-guida-3066)
 
 

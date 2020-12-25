@@ -3,9 +3,7 @@
 # ethereum-autostaker
 Setup your Ethereum staking box almost automatically.
 
-*Parli italiano?* » Leggi: 
-
-See: 
+*Parli italiano?* » Leggi: [ethereum-autostaker: script automatico per configurare un PC per lo staking di Ethereum 2.0 (guida)](https://turbolab.it/criptovalute-bitcoin-ethereum-litecoin-4904/ethereum-autostaker-script-automatico-configurare-pc-staking-ethereum-2.0-guida-3066)
 
 
 # 1. Install
@@ -26,7 +24,8 @@ Follow the instruction and you're done! Happy staking!
 
 # Guides/reviews
 
-* **Italiano** (TurboLab.it): [Aggiornare Ubuntu con un solo comando: zzupdate (pacchetti e sistema operativo)](https://turbolab.it/199)
+* **Italiano** (TurboLab.it): [ethereum-autostaker: script automatico per configurare un PC per lo staking di Ethereum 2.0 (guida)](https://turbolab.it/criptovalute-bitcoin-ethereum-litecoin-4904/ethereum-autostaker-script-automatico-configurare-pc-staking-ethereum-2.0-guida-3066)
+
 
 # Social
 

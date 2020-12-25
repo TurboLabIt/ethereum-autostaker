@@ -119,8 +119,6 @@ case $CHOICE in
         ;;
     2)
         RUNMODE=mainnet
-        echo "We are not ready for primetime just yet"
-        exit
         ;;
 esac
 

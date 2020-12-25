@@ -137,9 +137,7 @@ if [ $INSTALL_ZZUPDATE = 1 ]; then
 
     printTitle "Installing zzupdate..."
     curl -s https://raw.githubusercontent.com/TurboLabIt/zzupdate/master/setup.sh?$(date +%s) | sudo sh
-    echo "REBOOT=0" > /etc/turbolab.it/zzupdate.conf
-    echo "VERSION_UPGRADE=0" >> /etc/turbolab.it/zzupdate.conf
-    echo "NIMBUS_UPGRADE=1" >> /etc/turbolab.it/zzupdate.conf
+	cp ${SCRIPT_DIR}config/zzupdate/zzupdate.conf /etc/turbolab.it/zzupdate.conf
     zzupdate
 fi
 
@@ -154,19 +152,8 @@ if [ $INSTALL_GETH = 1 ]; then
     useradd --no-create-home --shell /bin/false goeth
     mkdir -p /var/lib/goethereum
     chown -R goeth:goeth /var/lib/goethereum
-    
-    if [ $RUNMODE = "testnet" ]; then
-
-        curl -Lo /etc/systemd/system/geth.service https://turbolab.it/scarica/344
-    fi
-
-
-    if [ $RUNMODE = "mainnet" ]; then
-
-        curl -Lo /etc/systemd/system/geth.service https://turbolab.it/scarica/348
-    fi
-
-
+	
+	cp ${SCRIPT_DIR}config/go-ethereum/${$RUNMODE}.service.txt /etc/systemd/system/geth.service
     cat /etc/systemd/system/geth.service
     
     systemctl enable geth
@@ -225,20 +212,8 @@ if [ $INSTALL_NIMBUS = 1 ]; then
     nimbus deposits import --data-dir=/var/lib/nimbus $HOME/eth2.0-deposit-cli/validator_keys
     
     chown nimbus:nimbus /var/lib/nimbus -R
-
-    
-    if [ $RUNMODE = "testnet" ]; then
-
-        curl -Lo /etc/systemd/system/nimbus.service https://turbolab.it/scarica/347
-    fi
-
-
-    if [ $RUNMODE = "mainnet" ]; then
-
-        curl -Lo /etc/systemd/system/nimbus.service https://turbolab.it/scarica/349
-    fi
-
-
+	
+	cp ${SCRIPT_DIR}config/nimbus/${$RUNMODE}.service.txt /etc/systemd/system/nimbus.service
     cat /etc/systemd/system/nimbus.service
     
     systemctl enable nimbus

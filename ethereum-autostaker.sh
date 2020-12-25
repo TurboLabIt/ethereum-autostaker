@@ -137,7 +137,7 @@ if [ $INSTALL_ZZUPDATE = 1 ]; then
 
     printTitle "Installing zzupdate..."
     curl -s https://raw.githubusercontent.com/TurboLabIt/zzupdate/master/setup.sh?$(date +%s) | sudo sh
-	cp ${SCRIPT_DIR}config/zzupdate/zzupdate.conf /etc/turbolab.it/zzupdate.conf
+    cp ${SCRIPT_DIR}config/zzupdate/zzupdate.conf /etc/turbolab.it/zzupdate.conf
     zzupdate
 fi
 
@@ -153,7 +153,7 @@ if [ $INSTALL_GETH = 1 ]; then
     mkdir -p /var/lib/goethereum
     chown -R goeth:goeth /var/lib/goethereum
 	
-	cp ${SCRIPT_DIR}config/go-ethereum/${$RUNMODE}.service.txt /etc/systemd/system/geth.service
+    cp ${SCRIPT_DIR}config/go-ethereum/${RUNMODE}.service.txt /etc/systemd/system/geth.service
     cat /etc/systemd/system/geth.service
     
     systemctl enable geth
@@ -213,7 +213,7 @@ if [ $INSTALL_NIMBUS = 1 ]; then
     
     chown nimbus:nimbus /var/lib/nimbus -R
 	
-	cp ${SCRIPT_DIR}config/nimbus/${$RUNMODE}.service.txt /etc/systemd/system/nimbus.service
+    cp ${SCRIPT_DIR}config/nimbus/${RUNMODE}.service.txt /etc/systemd/system/nimbus.service
     cat /etc/systemd/system/nimbus.service
     
     systemctl enable nimbus

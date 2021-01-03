@@ -9,7 +9,7 @@ Group=goeth
 Type=simple
 Restart=on-failure
 RestartSec=5
-ExecStart=geth --ws --datadir /var/lib/goethereum
+ExecStart=geth --maxpeers 10 --ws --datadir /var/lib/goethereum
 
 [Install]
 WantedBy=default.target

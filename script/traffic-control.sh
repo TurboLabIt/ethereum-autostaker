@@ -9,9 +9,6 @@ WORKING_DIR_ORIGINAL="$(pwd)"
 INSTALL_DIR_PARENT="/usr/local/turbolab.it/"
 INSTALL_DIR=${INSTALL_DIR_PARENT}ethereum-autostaker/
 
-## Lib directory (will store the network interface)
-LIB_DIR="/var/lib/turbolab.it/"
-
 CRON_FILE=/etc/cron.d/ethereum-autostaker-${SCRIPT_NAME}
 
 ## Title
@@ -19,20 +16,6 @@ WEBSTACKUP_FRAME="O===========================================================O"
 echo "$WEBSTACKUP_FRAME"
 echo " --> ${SCRIPT_NAME} - $(date) on $(hostname)"
 echo "$WEBSTACKUP_FRAME"
-
-
-echo ""
-echo "Lib directory"
-echo "-------------"
-if [ ! -d "${LIB_DIR}" ]; then
-
-    echo "Creating lib directory..."
-    mkdir -p "${LIB_DIR}"
-
-else
-
-    echo "Lib directory exists"
-fi
 
 
 echo ""

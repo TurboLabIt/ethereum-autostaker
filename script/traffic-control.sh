@@ -11,7 +11,6 @@ INSTALL_DIR=${INSTALL_DIR_PARENT}ethereum-autostaker/
 
 ## Lib directory (will store the network interface)
 LIB_DIR="/var/lib/turbolab.it/"
-IF_FILE=${LIB_DIR}interface
 
 CRON_FILE=/etc/cron.d/ethereum-autostaker-${SCRIPT_NAME}
 
@@ -51,23 +50,12 @@ fi
 
 
 echo ""
-echo "Network interface"
-echo "--------------------"
-if [ ! -f "${IF_FILE}" ]; then
-
-    ip a
-    USR_IF=$1
-
-    while [ -z "$USR_IF" ]
-    do
-	    read -p "Please provide the network interface name: " USR_IF  < /dev/tty
-    done
-
-else
-
-    USR_IF=$(<${IF_FILE})
-fi
-
+echo "Detect the network interface"
+echo "----------------------------"
+#https://unix.stackexchange.com/a/165067/104537
+host=google.com
+host_ip=$(getent ahosts "$host" | awk '{print $1; exit}')
+USR_IF=$(ip route get "$host_ip" | grep -Po '(?<=(dev )).*(?= src| proto)')
 echo ${USR_IF}
 
 

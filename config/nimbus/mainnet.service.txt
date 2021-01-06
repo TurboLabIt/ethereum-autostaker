@@ -10,7 +10,7 @@ Group=nimbus
 Restart=on-failure
 RestartSec=5
 WorkingDirectory=/var/lib/nimbus
-Environment="ClientIP=$(curl -s v4.ident.me)"
+Environment="ClientIP=$(dig @resolver4.opendns.com myip.opendns.com +short)"
 ExecStart=/bin/bash -c '/usr/local/bin/nimbus --network=mainnet --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --nat=extip:${ClientIP} --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-level=INFO --log-file=/var/lib/nimbus/beacon_node.log'
 
 [Install]

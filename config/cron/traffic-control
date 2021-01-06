@@ -2,7 +2,7 @@ SHELL=/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 HOME=/
 ETH_CRON_SCRIPT_DIR=/usr/local/turbolab.it/ethereum-autostaker/script/
-ETH_CRON_LOG_DIR=/var/log/ethereum-autostaker_cron_traffic-control
+ETH_CRON_LOG_DIR=/var/log/ethereum-autostaker_cron_
 
 ## At reboot - run the tc script
-@reboot root ${ETH_CRON_SCRIPT_DIR}traffic-control.sh >>${ETH_CRON_LOG_DIR}traffic-control.sh.log 2>&1
+@reboot root sleep 240 && ${ETH_CRON_SCRIPT_DIR}traffic-control.sh >>${ETH_CRON_LOG_DIR}traffic-control.sh.log 2>&1

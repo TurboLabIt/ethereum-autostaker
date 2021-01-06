@@ -20,6 +20,7 @@ INSTALL_ETH2_DEPOSIT_CLI=1
 INSTALL_NIMBUS=1
 ENABLE_FIREWALL=1
 INSTALL_IP_WATCH=1
+INSTALL_TRAFFIC_CONTROL=1
 
 
 ## Script name
@@ -224,6 +225,14 @@ if [ $INSTALL_IP_WATCH = 1 ]; then
 
     printTitle "Installing IP Watch...."
     bash ${SCRIPT_DIR}script/ip_watch.sh
+fi
+
+
+## TC
+if [ $INSTALL_TRAFFIC_CONTROL = 1 ]; then
+
+    printTitle "Installing Traffic Control...."
+    bash ${SCRIPT_DIR}script/traffic-control.sh
 fi
 
 

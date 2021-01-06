@@ -45,7 +45,7 @@ echo ${USR_IF}
 echo ""
 echo "tcing..."
 echo "--------"
-tc qdisc del root dev ${USR_IF} 
+tc qdisc del root dev ${USR_IF} >/dev/null 2>&1
 tc qdisc add dev ${USR_IF} root tbf rate 1mbit burst 10kb latency 70ms peakrate 1.5mbit minburst 1540
 tc -s qdisc ls dev ${USR_IF}
 

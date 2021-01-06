@@ -13,7 +13,7 @@ INSTALL_DIR=${INSTALL_DIR_PARENT}ethereum-autostaker/
 LIB_DIR="/var/lib/turbolab.it/"
 IP_FILE=${LIB_DIR}ip_address
 
-CRON_FILE=/etc/cron.d/ethereum-autostaker
+CRON_FILE=/etc/cron.d/ethereum-autostaker-${SCRIPT_NAME}
 
 ## Title
 WEBSTACKUP_FRAME="O===========================================================O"
@@ -42,7 +42,7 @@ echo "---------"
 if [ ! -f "$CRON_FILE" ]; then
 
     echo "Creating cron file..."
-    cp "${INSTALL_DIR}config/cron/ethereum-autostaker" "$CRON_FILE"
+    cp "${INSTALL_DIR}config/cron/${SCRIPT_NAME}" "$CRON_FILE"
 
 else
 

@@ -76,7 +76,11 @@ echo $CURRENT_IP >${IP_FILE}
 echo ""
 if [ "$LAST_KNOWN_IP" == "$CURRENT_IP" ]; then
 
-    echo "The assigned IP address is still the same, sleeping..."
+    echo "The assigned IP address is still the same. Sleeping..."
+    
+elif [ -z "$CURRENT_IP" ]; then
+
+    echo "The current assigned IP is undefined. Sleeping..."
 
 else
 

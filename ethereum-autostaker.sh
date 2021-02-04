@@ -196,8 +196,8 @@ if [ $INSTALL_NIMBUS = 1 ]; then
     
     cd nimbus-eth2
     
-    make -j4 beacon_node
-    mv /$HOME/nimbus-eth2/build/beacon_node /usr/local/bin/nimbus
+    make -j4 nimbus_beacon_node
+    mv /$HOME/nimbus-eth2/build/nimbus_beacon_node /usr/local/bin/nimbus
     
     cd $HOME
     rm -rf $HOME/nimbus-eth2

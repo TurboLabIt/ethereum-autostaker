@@ -9,6 +9,7 @@ if [ -f "/usr/local/bin/nimbus" ]; then
   git clone https://github.com/status-im/nimbus-eth2.git
   cd nimbus-eth2
   make -j4 nimbus_beacon_node
+  service nimbus stop
   mv $HOME/nimbus-eth2/build/nimbus_beacon_node /usr/local/bin/nimbus
   cd $HOME
   rm -rf $HOME/nimbus-eth2

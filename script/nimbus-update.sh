@@ -6,7 +6,7 @@ echo "Updating Nimbus.."
 if [ -f "/usr/local/bin/nimbus" ]; then
 
   apt update
-  apt install apt install build-essential git libpcre3-dev -y
+  apt install build-essential git libpcre3-dev -y
 
   cd $HOME
   git clone https://github.com/status-im/nimbus-eth2.git

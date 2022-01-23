@@ -84,8 +84,28 @@ elif [ -z "$CURRENT_IP" ]; then
 
 else
 
-    echo "The assigned IP address HAS CHANGED! Restarting Nimbus..."
-    service nimbus restart
+    echo "The assigned IP address HAS CHANGED!"
+    
+    if [ -f /etc/systemd/system/nimbus.service ]; then
+        
+        echo "Restarting Nimbus..."
+        service nimbus restart
+        
+    else
+    
+        echo "Nimbus not installed, skipping"
+    fi
+    
+
+    if [ -f /etc/systemd/system/besu.service ]; then
+        
+        echo "Restarting Besu..."
+        service besu restart
+        
+    else
+    
+        echo "Besu not installed, skipping"
+    fi
 fi
 
 

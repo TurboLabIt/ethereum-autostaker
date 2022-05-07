@@ -23,3 +23,4 @@ else
 
   echo "Nimbus is not installed"
 fi
+--

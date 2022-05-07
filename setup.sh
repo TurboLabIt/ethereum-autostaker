@@ -34,8 +34,12 @@ cd "$INSTALL_DIR"
 git pull --no-rebase
 
 ## Symlink (globally-available command)
-if [ ! -e "/usr/bin/${SCRIPT_NAME}" ]; then
-  ln -s ${INSTALL_DIR}${SCRIPT_NAME}.sh /usr/bin/${SCRIPT_NAME}
+if [ ! -f "/usr/local/bin/${SCRIPT_NAME}" ]; then
+  ln -s "${INSTALL_DIR}${SCRIPT_NAME}.sh" "/usr/local/bin/${SCRIPT_NAME}"
+fi
+
+if [ ! -f "/usr/local/bin/nimbus-update" ]; then
+  ln -s "${INSTALL_DIR}script/nimbus-update.sh" "/usr/local/bin/nimbus-update"
 fi
 
 ## Restore working directory

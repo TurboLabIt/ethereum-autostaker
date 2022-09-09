@@ -23,16 +23,6 @@ p2p-port = 30303
 # https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#color-enabled
 color-enabled = false
 
-## Enables or disables the HTTP JSON-RPC service. 
-# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#rpc-http-enabled
-rpc-http-enabled = true
-rpc-http-host = "127.0.0.1"
-
-## Enables or disables the WebSocket JSON-RPC service.
-# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#rpc-ws-enabled
-rpc-ws-enabled = true
-rpc-ws-host = "127.0.0.1"
-
 ## Specify the method for handling NAT environments.
 # https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#nat-method
 # https://github.com/hyperledger/besu-docs/blob/main/docs/HowTo/Find-and-Connect/Specifying-NAT.md#none

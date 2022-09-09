@@ -1,0 +1,52 @@
+## The predefined network configuration. The default is mainnet.
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#network
+network = "goerli"
+
+## Bonsai Tries is a data storage layout policy designed to reduce storage requirements and increase read performance.
+# https://github.com/hyperledger/besu-docs/blob/main/docs/Concepts/Data-Storage-Formats.md#bonsai-tries
+data-storage-format = "BONSAI"
+
+## Snap synchronization
+# https://github.com/hyperledger/besu-docs/blob/main/docs/Concepts/Node-Types.md#snap-synchronization
+sync-mode = "X_SNAP"
+
+## The path to the Besu data directory. 
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#data-path
+data-path = "/var/lib/besu/"
+
+## The P2P listening ports (UDP and TCP). The default is 30303. You must expose ports appropriately.
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#p2p-port
+# https://github.com/hyperledger/besu-docs/blob/main/docs/HowTo/Find-and-Connect/Configuring-Ports.md
+p2p-port = 30303
+
+## Enables or disables color output to console.
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#color-enabled
+color-enabled = false
+
+## Enables or disables the HTTP JSON-RPC service. 
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#rpc-http-enabled
+rpc-http-enabled = true
+rpc-http-host = "127.0.0.1"
+
+## Enables or disables the WebSocket JSON-RPC service.
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#rpc-ws-enabled
+rpc-ws-enabled = true
+rpc-ws-host = "127.0.0.1"
+
+## Specify the method for handling NAT environments.
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#nat-method
+# https://github.com/hyperledger/besu-docs/blob/main/docs/HowTo/Find-and-Connect/Specifying-NAT.md#none
+nat-method = "none"
+
+## Enables or disables mining when you start the node.
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#miner-enabled
+#miner-enabled = true
+
+## The account you pay mining rewards to. You must specify a valid coinbase when you enable mining using the --miner-enabled option
+# https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#miner-coinbase
+#miner-coinbase = "0x..."
+
+## JWT public key authentication
+# https://besu.hyperledger.org/en/stable/HowTo/Interact/APIs/Authentication/#jwt-public-key-authentication
+# https://besu.hyperledger.org/en/stable/public-networks/reference/cli/options/#engine-host-allowlist
+#engine-jwt-secret = "/etc/jwtsecret"

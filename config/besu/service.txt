@@ -1,5 +1,5 @@
 [Unit]
-Description=Besu (mainnet)
+Description=Besu
 After=network.target 
 Wants=network.target
 

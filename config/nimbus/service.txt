@@ -1,0 +1,17 @@
+[Unit]
+Description=Nimbus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=nimbus
+Group=nimbus
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=/var/lib/nimbus
+Environment="ClientIP=$(dig @resolver4.opendns.com myip.opendns.com +short)"
+ExecStart=/bin/bash -c '/usr/local/bin/nimbus --config-file=/etc/nimbus.toml --non-interactive --nat=extip:${ClientIP}'
+
+[Install]
+WantedBy=multi-user.target

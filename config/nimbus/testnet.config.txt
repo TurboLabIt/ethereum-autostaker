@@ -2,7 +2,7 @@
 
 network = "goerli"
 
-web3-url = ["ws://127.0.0.1:8546"]
+web3-url = ["http://127.0.0.1:8551"]
 
 data-dir = "/var/lib/nimbus"
 validators-dir = "/var/lib/nimbus/validators"

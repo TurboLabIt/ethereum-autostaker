@@ -11,6 +11,7 @@ if [ -f "/usr/local/bin/nimbus" ]; then
   cd $HOME
   git clone https://github.com/status-im/nimbus-eth2.git
   cd nimbus-eth2
+  make update
   make -j4 nimbus_beacon_node
   sudo service nimbus stop
   sudo mv "$HOME/nimbus-eth2/build/nimbus_beacon_node" "/usr/local/bin/nimbus"

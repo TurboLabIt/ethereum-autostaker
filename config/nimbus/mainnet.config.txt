@@ -15,3 +15,5 @@ log-level = "INFO"
 suggested-fee-recipient = "0x...."
 
 jwt-secret = "/etc/jwtsecret"
+
+history = "prune"

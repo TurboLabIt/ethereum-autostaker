@@ -16,4 +16,5 @@ suggested-fee-recipient = "0x...."
 
 jwt-secret = "/etc/jwtsecret"
 
+## https://nimbus.guide/history.html
 history = "prune"

@@ -8,7 +8,7 @@ data-storage-format = "BONSAI"
 
 ## Snap synchronization
 # https://github.com/hyperledger/besu-docs/blob/main/docs/Concepts/Node-Types.md#snap-synchronization
-sync-mode = "X_SNAP"
+sync-mode = "SNAP"
 
 ## The path to the Besu data directory. 
 # https://github.com/hyperledger/besu-docs/blob/main/docs/public-networks/reference/cli/options.md#data-path

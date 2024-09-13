@@ -1,1 +1,27 @@
+[Unit]
+Description=Nethermind (mainnet)
+Wants=network-online.target
+After=network-online.target
 
+[Service]
+Type=simple
+User=nethermind
+Group=nethermind
+Restart=on-failure
+RestartSec=60
+WorkingDirectory=/var/lib/nethermind
+ExecStart=/usr/share/nethermind/nethermind \
+  --config mainnet \
+  --datadir /var/lib/nethermind/ \
+  --Sync.SnapSync true \
+  --Sync.AncientBodiesBarrier 11000000 \
+  --Sync.AncientReceiptsBarrier 11000000 \
+  #--JsonRpc.JwtSecretFile /etc/jwtsecret \
+  --Network.P2PPort 30303 \
+  --Network.DiscoveryPort 30303 \
+  --Pruning.FullPruningTrigger VolumeFreeSpace \
+  --Pruning.FullPruningThresholdMb 300000
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=default.target
